@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Corridor.tscn" type="PackedScene" id=1]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="Shevat" type="CSGCylinder" parent="."]
+transform = Transform( 2.72936, 0, 0, 0, 4.01629, 0, 0, 0, 2.72936, 0, 2.79376, 0 )
+
+[node name="ShevatCorridor" type="CSGTorus" parent="Shevat"]
+transform = Transform( 0.897997, 0, 0, 0, 0.57158, 0, 0, 0, 0.897997, 0, 0.0048382, 0 )
+
+[node name="Interior" type="CSGTorus" parent="Shevat/ShevatCorridor"]
+transform = Transform( 1, 0, 0, 0, 0.6, 0, 0, 0, 1, 0, 0, 0 )
+operation = 2
+
+[node name="MiniCorridor1" parent="Shevat" instance=ExtResource( 1 )]
+transform = Transform( 0.101636, 0.00466068, -2.98017e-11, 0, -2.76878e-08, -0.0926594, -0.000747856, 0.633405, -4.05016e-09, 0.0117985, 0.0193363, 1.41631 )
+
+[node name="MiniCorridor2" parent="Shevat" instance=ExtResource( 1 )]
+transform = Transform( 0.070376, 0.457015, -2.92228e-09, 0, -2.76878e-08, -0.0926594, -0.0733325, 0.43859, -2.80446e-09, -0.99632, 0.0193364, -0.973589 )
+
+[node name="MiniCorridor3" parent="Shevat" instance=ExtResource( 1 )]
+transform = Transform( 0.0680512, -0.470491, 3.00844e-09, 0, -2.76878e-08, -0.0926594, 0.0754948, 0.424102, -2.71182e-09, 0.989252, 0.0193364, -0.968109 )
+
+[node name="Interior" type="CSGCylinder" parent="Shevat"]
+operation = 2
+radius = 0.978206
+height = 0.886497

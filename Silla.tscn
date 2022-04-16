@@ -1,0 +1,35 @@
+[gd_scene format=2]
+
+[node name="Silla" type="CSGBox"]
+transform = Transform( 0.0143988, 0, 0, 0, 0.0818055, 0, 0, 0, 0.0143988, -2.14577e-06, 0.161789, -0.0157175 )
+width = 1.5165
+depth = 1.87504
+
+[node name="Pata1" type="CSGBox" parent="."]
+transform = Transform( 0.309752, 4.322, -2.46239e-09, 0, -2.67174e-07, -0.0796668, -0.309752, 4.322, -2.46239e-09, 0, -1.08044, -0.0215429 )
+height = 3.02193
+
+[node name="Pata2" type="CSGBox" parent="."]
+transform = Transform( 0.312882, -4.36566, 2.48727e-09, 0, -2.69873e-07, -0.0804717, 0.312882, 4.36566, -2.48727e-09, 0, -1.08044, -0.0215429 )
+height = 2.92948
+
+[node name="Palo respaldo" type="CSGBox" parent="."]
+transform = Transform( 0.547664, -0.850105, 0, 0.0263365, 0.547664, 0, 0, 0, 0.736851, -4.85454, 1.70569, 0 )
+width = 1.36914
+height = 2.51523
+
+[node name="Respaldo" type="CSGSphere" parent="Palo respaldo"]
+transform = Transform( -0.385301, 3.19318, 0, -1.34978, -0.150825, 0, 0, 0, 8.50059, -0.473498, 1.66199, -0.0300968 )
+
+[node name="CSGBox" type="CSGBox" parent="Palo respaldo/Respaldo"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.500177, 0 )
+operation = 2
+height = 1.03442
+
+[node name="Asiento" type="CSGSphere" parent="."]
+transform = Transform( 6.17433, 0, 0, 0, 0.336935, 0, 0, 0, 8.80332, 0.0285115, 0.946787, -0.0221768 )
+
+[node name="CSGBox" type="CSGBox" parent="Asiento"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.500177, 0 )
+operation = 2
+height = 1.03442
