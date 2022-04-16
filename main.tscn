@@ -2,8 +2,7 @@
 
 [ext_resource path="res://Silla.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Camera.gd" type="Script" id=2]
-
-[sub_resource type="CubeMesh" id=1]
+[ext_resource path="res://estacion_espacial.tscn" type="PackedScene" id=3]
 
 [node name="Spatial" type="Spatial"]
 
@@ -20,31 +19,17 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.96046e-07, 4.42479, 13.5995 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.009, 4.05456, -32.359 )
 omni_range = 4.99679
 
-[node name="Habitacion" type="CSGBox" parent="."]
-transform = Transform( 20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 16.3041, -0.280724 )
-height = 1.61826
+[node name="Silla" parent="." instance=ExtResource( 1 )]
+transform = Transform( -0.057, 0, -8.60676e-09, 0, 0.326, 0, 8.60676e-09, 0, -0.057, 5.217, 4.4, -3.282 )
 
-[node name="Interior" type="CSGBox" parent="Habitacion"]
-transform = Transform( 0.95, 0, 0, 0, -0.95, 1.43446e-07, 0, -1.43446e-07, -0.95, 0, 0.163513, 0 )
-operation = 2
+[node name="Silla2" parent="." instance=ExtResource( 1 )]
+transform = Transform( 0.057, 0, 0, 0, 0.326, 0, 0, 0, 0.057, 2.023, 4.4, -3.282 )
 
-[node name="Puerta" type="CSGBox" parent="Habitacion"]
-transform = Transform( 0.104047, 0, 0, 0, 0.216746, 0, 0, 0, 0.16623, -0.898659, -0.568765, 0.00185509 )
-operation = 2
+[node name="Silla3" parent="." instance=ExtResource( 1 )]
+transform = Transform( -2.49155e-09, 0, 0.057, 0, 0.326, 0, -0.057, 0, -2.49155e-09, 3.545, 4.4, -1.979 )
 
-[node name="Silla" parent="Habitacion" instance=ExtResource( 1 )]
-transform = Transform( -0.0143988, 0, -1.25878e-09, 0, 0.0818055, 0, 1.25878e-09, 0, -0.0143988, 0.662, -0.686, 0 )
+[node name="Silla4" parent="." instance=ExtResource( 1 )]
+transform = Transform( -2.49155e-09, 0, -0.057, 0, 0.326, 0, 0.057, 0, -2.49155e-09, 3.545, 4.4, -4.4 )
 
-[node name="Silla2" parent="Habitacion" instance=ExtResource( 1 )]
-transform = Transform( 0.0143988, 0, 0, 0, 0.0818055, 0, 0, 0, 0.0143988, 0, -0.687, 0 )
-
-[node name="Silla3" parent="Habitacion" instance=ExtResource( 1 )]
-transform = Transform( -6.29391e-10, 0, 0.0143988, 0, 0.0818055, 0, -0.0143988, 0, -6.29391e-10, 0.277046, -0.68723, 0.366464 )
-
-[node name="Silla4" parent="Habitacion" instance=ExtResource( 1 )]
-transform = Transform( -6.29392e-10, 0, -0.0143988, 0, 0.0818055, 0, 0.0143988, 0, -6.29392e-10, 0.277046, -0.68723, -0.407317 )
-
-[node name="MeshInstance" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -72.5042, 0, 0 )
-mesh = SubResource( 1 )
-material/0 = null
+[node name="estacion_espacial" parent="." instance=ExtResource( 3 )]
+transform = Transform( 0.996453, 0, 0, 0, 0.996453, 0, 0, 0, 0.996453, 0.0234799, 0.00458264, -0.00244468 )

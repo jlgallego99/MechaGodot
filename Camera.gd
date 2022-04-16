@@ -6,12 +6,14 @@ const ROTMAX_ABAJO = 35
 var roty_total = 0
 var rotx_total = 0
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	# Iniciar animación básica al presionar la tecla ESPACIO
+	if Input.is_action_pressed("Iniciar_Animacion"):
+		$AnimationPlayer.play("Prueba")
+	
 	orbital(delta)
 
 func orbital(delta):
