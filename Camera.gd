@@ -13,6 +13,9 @@ func _process(delta):
 	orbital(delta)
 
 func orbital(delta):
+	if Input.is_action_pressed("Iniciar_Animacion"):
+		$CameraX/Camera/AnimarCamara.play("Mover")
+	
 	if Input.is_action_pressed("Camara_derecha"):
 		roty_total += 2
 		rotate_object_local(Vector3(0, 1, 0), SPEED * delta)

@@ -13,8 +13,10 @@ script = ExtResource( 2 )
 [node name="CameraX" type="Spatial" parent="CameraY"]
 
 [node name="Camera" type="Camera" parent="CameraY/CameraX"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.96182e-06, 4.42479, 90.5995 )
-far = 250.0
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.27835e-06, 0, 86.6 )
+far = 200.0
+
+[node name="AnimarCamara" type="AnimationPlayer" parent="CameraY/CameraX/Camera"]
 
 [node name="OmniLight" type="OmniLight" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.009, 4.05456, -32.359 )
