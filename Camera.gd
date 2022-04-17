@@ -10,10 +10,6 @@ func _ready():
 	pass
 
 func _process(delta):
-	# Iniciar animación básica al presionar la tecla ESPACIO
-	if Input.is_action_pressed("Iniciar_Animacion"):
-		$AnimationPlayer.play("Prueba")
-	
 	orbital(delta)
 
 func orbital(delta):
