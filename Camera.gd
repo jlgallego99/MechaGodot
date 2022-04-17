@@ -10,12 +10,14 @@ func _ready():
 	pass
 
 func _process(delta):
+	# Orbitar la cámara
 	orbital(delta)
-
-func orbital(delta):
+	
+	# Iniciar animación si se pulsa la tecla ESPACIO
 	if Input.is_action_pressed("Iniciar_Animacion"):
 		$CameraX/Camera/AnimarCamara.play("Mover")
-	
+
+func orbital(delta):
 	if Input.is_action_pressed("Camara_derecha"):
 		roty_total += 2
 		rotate_object_local(Vector3(0, 1, 0), SPEED * delta)
