@@ -112,4 +112,4 @@ transform = Transform( -2.49155e-09, 0, -0.057, 0, 0.326, 0, 0.057, 0, -2.49155e
 environment = SubResource( 4 )
 
 [node name="estacion_espacial_uv" parent="." instance=ExtResource( 3 )]
-transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -3.5, 6.1, -3 )
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 6.1, 0 )
