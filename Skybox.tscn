@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://texturas/mars.hdr" type="Texture" id=1]
+
+[sub_resource type="PanoramaSky" id=3]
+panorama = ExtResource( 1 )
+
+[sub_resource type="Environment" id=4]
+background_mode = 2
+background_sky = SubResource( 3 )
+
+[node name="Skybox" type="WorldEnvironment"]
+environment = SubResource( 4 )
