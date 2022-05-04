@@ -35,11 +35,12 @@ transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 6, 0 )
 [node name="Skybox" parent="." instance=ExtResource( 4 )]
 
 [node name="Foco_Potente" type="SpotLight" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 5.119, -10, 4.811 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 8.12, -12.8, 7.81 )
 light_energy = 5.0
-spot_range = 22.2
+shadow_enabled = true
+spot_range = 19.1
 spot_angle = 51.7153
 
-[node name="DirectionalLight" type="DirectionalLight" parent="."]
+[node name="Luz_Nebulosa" type="DirectionalLight" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 123.4 )
-light_energy = 2.0
+light_energy = 1.5

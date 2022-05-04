@@ -7,9 +7,11 @@
 [ext_resource path="res://texturas/Sci_fi_Metal_Panel_004_SD/Sci_fi_Metal_Panel_004_ambientOcclusion.jpg" type="Texture" id=5]
 
 [resource]
+flags_ensure_correct_normals = true
 albedo_texture = ExtResource( 1 )
 metallic = 0.8
 metallic_texture = ExtResource( 4 )
+roughness = 0.5
 roughness_texture = ExtResource( 2 )
 normal_enabled = true
 normal_scale = 1.0
@@ -19,6 +21,3 @@ ao_light_affect = 0.0
 ao_texture = ExtResource( 5 )
 ao_on_uv2 = false
 ao_texture_channel = 0
-refraction_enabled = true
-refraction_scale = 0.05
-refraction_texture_channel = 0
