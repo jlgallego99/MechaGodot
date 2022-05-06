@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Silla.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Camera.gd" type="Script" id=2]
 [ext_resource path="res://estacion_espacial_uv_aplicado.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Skybox.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Foco_Potente.gd" type="Script" id=5]
+[ext_resource path="res://Bombilla_Emergencia.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Tililar"
@@ -16,7 +17,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 2.5, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 2.5, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 2.5, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 2.5, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 2.5, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 4, -0.25, 0, 0.921418, -2.65226, -0.0139725, -0.478582, 1.02403, 0.785549, -0.73556, 5, -0.25, 0, 0.25, 0 ),
+"points": PoolRealArray( 10, -0.25, 0, 0.25, 0, 2.5, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 2.5, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 2.5, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 2.5, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 2.5, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 4, -0.25, 0, 0.921418, -2.65226, -0.0139725, -0.478582, 1.02403, 0.785549, -0.73556, 5, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 2, 2.1, 2.2, 2.3, 2.4, 3.5, 4 )
 }
 
@@ -51,7 +52,7 @@ transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 6, 0 )
 
 [node name="Foco_Potente" type="SpotLight" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 8.12, -12.8, 7.81 )
-light_energy = 0.0
+light_energy = 10.0
 shadow_enabled = true
 spot_range = 17.8
 spot_angle = 51.7153
@@ -64,3 +65,14 @@ anims/Tililar = SubResource( 1 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 123.4 )
 light_energy = 2.0
 shadow_enabled = true
+
+[node name="Bombilla_Emergencia" parent="." instance=ExtResource( 6 )]
+
+[node name="Bombilla_Emergencia2" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -48, -2.4, 0 )
+
+[node name="Bombilla_Emergencia3" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.4, 48 )
+
+[node name="Bombilla_Emergencia4" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.4, -48 )
