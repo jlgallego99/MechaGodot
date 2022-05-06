@@ -1,167 +1,78 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Silla.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Camera.gd" type="Script" id=2]
-[ext_resource path="res://estacion_espacial.tscn" type="PackedScene" id=3]
+[ext_resource path="res://estacion_espacial_uv_aplicado.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Skybox.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Foco_Potente.gd" type="Script" id=5]
+[ext_resource path="res://Bombilla_Emergencia.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Animation" id=1]
-resource_name = "Mover"
-length = 8.5
+resource_name = "Tililar"
+length = 4.0
 tracks/0/type = "bezier"
-tracks/0/path = NodePath("../..:translation:x")
+tracks/0/path = NodePath(".:light_energy")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 4, 6 )
-}
-tracks/1/type = "bezier"
-tracks/1/path = NodePath("../..:translation:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"points": PoolRealArray( -184, -0.25, 0, 0.25, 0, -184, -0.25, 0, 0.25, 0, -14, -1.5, -11.4391, 0.25, 0 ),
-"times": PoolRealArray( 0, 4, 6 )
-}
-tracks/2/type = "bezier"
-tracks/2/path = NodePath("../..:translation:z")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 4, 6 )
-}
-tracks/3/type = "bezier"
-tracks/3/path = NodePath(".:translation:x")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"points": PoolRealArray( -1.22392e-06, -0.25, 0, 0.25, 0, -1.00536e-06, -0.25, 0, 0.25, 0, -1.00536e-06, -0.25, 0, 0.25, 0, -4.37114e-06, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 4, 6, 7.3, 8.5 )
-}
-tracks/4/type = "bezier"
-tracks/4/path = NodePath(".:translation:y")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"points": PoolRealArray( 6, -0.25, 0, 0.25, 0, 6, -0.25, 0, 0.25, 0, 6, -0.25, 0, 0.25, 0, 24, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 4, 6, 7.3, 8.5 )
-}
-tracks/5/type = "bezier"
-tracks/5/path = NodePath(".:translation:z")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"points": PoolRealArray( -16.4, -0.25, 0, 0.25, 0, -11.4, -0.25, 0, 0.25, 0, -11.4, -0.25, 0, 0.25, 0, -88.4, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 4, 6, 7.3, 8.5 )
-}
-
-[sub_resource type="Animation" id=2]
-length = 0.001
-tracks/0/type = "bezier"
-tracks/0/path = NodePath("../..:translation:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0 )
-}
-tracks/1/type = "bezier"
-tracks/1/path = NodePath("../..:translation:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"points": PoolRealArray( -184, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0 )
-}
-tracks/2/type = "bezier"
-tracks/2/path = NodePath("../..:translation:z")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0 )
-}
-tracks/3/type = "bezier"
-tracks/3/path = NodePath(".:translation:x")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"points": PoolRealArray( -1.22392e-06, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0 )
-}
-tracks/4/type = "bezier"
-tracks/4/path = NodePath(".:translation:y")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"points": PoolRealArray( 6, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0 )
-}
-tracks/5/type = "bezier"
-tracks/5/path = NodePath(".:translation:z")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"points": PoolRealArray( -16.4, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0 )
+"points": PoolRealArray( 10, -0.25, 0, 0.25, 0, 2.5, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 2.5, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 2.5, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 2.5, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 2.5, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 4, -0.25, 0, 0.921418, -2.65226, -0.0139725, -0.478582, 1.02403, 0.785549, -0.73556, 5, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 2, 2.1, 2.2, 2.3, 2.4, 3.5, 4 )
 }
 
 [node name="Spatial" type="Spatial"]
 
 [node name="CameraY" type="Spatial" parent="."]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -184, 0 )
+transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 7.9, -18.2, 7.6 )
 script = ExtResource( 2 )
 
 [node name="CameraX" type="Spatial" parent="CameraY"]
 
 [node name="Camera" type="Camera" parent="CameraY/CameraX"]
-transform = Transform( -1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -1.22392e-06, 6, -16.4 )
+transform = Transform( -1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, -0.282842, 0, -7.91472 )
 far = 200.0
 
-[node name="AnimarCamara" type="AnimationPlayer" parent="CameraY/CameraX/Camera"]
-anims/Mover = SubResource( 1 )
-anims/RESET = SubResource( 2 )
-
-[node name="OmniLight" type="OmniLight" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.009, 4.05456, -32.359 )
-omni_range = 4.99679
-
 [node name="Silla" parent="." instance=ExtResource( 1 )]
-transform = Transform( -0.057, 0, -8.60676e-09, 0, 0.326, 0, 8.60676e-09, 0, -0.057, 5.217, 4.4, -3.282 )
+transform = Transform( -0.057, 0, -8.60676e-09, 0, 0.326, 0, 8.60676e-09, 0, -0.057, 5.217, -6.7, -3.282 )
 
 [node name="Silla2" parent="." instance=ExtResource( 1 )]
-transform = Transform( 0.057, 0, 0, 0, 0.326, 0, 0, 0, 0.057, 2.023, 4.4, -3.282 )
+transform = Transform( 0.057, 0, 0, 0, 0.326, 0, 0, 0, 0.057, 2.023, -6.7, -3.282 )
 
 [node name="Silla3" parent="." instance=ExtResource( 1 )]
-transform = Transform( -2.49155e-09, 0, 0.057, 0, 0.326, 0, -0.057, 0, -2.49155e-09, 3.545, 4.4, -1.979 )
+transform = Transform( -2.49155e-09, 0, 0.057, 0, 0.326, 0, -0.057, 0, -2.49155e-09, 3.545, -6.7, -1.979 )
 
 [node name="Silla4" parent="." instance=ExtResource( 1 )]
-transform = Transform( -2.49155e-09, 0, -0.057, 0, 0.326, 0, 0.057, 0, -2.49155e-09, 3.545, 4.4, -4.4 )
+transform = Transform( -2.49155e-09, 0, -0.057, 0, 0.326, 0, 0.057, 0, -2.49155e-09, 3.545, -6.7, -4.4 )
 
-[node name="estacion_espacial" parent="." instance=ExtResource( 3 )]
-transform = Transform( 0.996453, 0, 0, 0, 0.996453, 0, 0, 0, 0.996453, 0.0234799, 0.00458264, -0.00244468 )
+[node name="estacion_espacial_uv_aplicado" parent="." instance=ExtResource( 3 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 6, 0 )
+
+[node name="Skybox" parent="." instance=ExtResource( 4 )]
+
+[node name="Foco_Potente" type="SpotLight" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 8.12, -12.8, 7.81 )
+light_energy = 10.0
+shadow_enabled = true
+spot_range = 17.8
+spot_angle = 51.7153
+script = ExtResource( 5 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Foco_Potente"]
+anims/Tililar = SubResource( 1 )
+
+[node name="Luz_Nebulosa" type="DirectionalLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 123.4 )
+light_energy = 2.0
+shadow_enabled = true
+
+[node name="Bombilla_Emergencia" parent="." instance=ExtResource( 6 )]
+
+[node name="Bombilla_Emergencia2" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -48, -2.4, 0 )
+
+[node name="Bombilla_Emergencia3" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.4, 48 )
+
+[node name="Bombilla_Emergencia4" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.4, -48 )
