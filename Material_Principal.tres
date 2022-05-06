@@ -5,6 +5,7 @@
 [ext_resource path="res://texturas/Sci-Fi_Wall_014_SD/Sci-Fi_Wall_014_normal.jpg" type="Texture" id=3]
 
 [resource]
+albedo_texture = ExtResource( 2 )
 normal_enabled = true
 normal_scale = 1.0
 normal_texture = ExtResource( 3 )
