@@ -15,3 +15,4 @@ func _ready():
 func _process(delta):
 	if Input.is_action_pressed("Animacion_Foco"):
 		$AnimationPlayer.play("Tililar")
+		get_node("/root/Spatial/Brillo_Foco/AnimationPlayer").play("Luz_Tililar")
