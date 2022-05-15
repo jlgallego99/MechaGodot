@@ -21,34 +21,36 @@ func _process(delta):
 	if Input.is_action_pressed("ui_cancel"):
 		get_tree().quit()
 	
-	# Mover la vista de la cámara con las flechas
-	if Input.is_action_pressed("Camara_derecha"):
-		rotx += rad2deg(-SPEED * delta)
-		Yaw.rotate_object_local(Vector3(0, 1, 0), -SPEED * delta)
-	elif Input.is_action_pressed("Camara_izquierda"):
-		rotx += rad2deg(SPEED * delta)
-		Yaw.rotate_object_local(Vector3(0, 1, 0), SPEED * delta)
-	
-	if Input.is_action_pressed("Camara_arriba") && rotx <= ROTMAX_ARRIBA:
-		rotx += rad2deg(SPEED * delta)
-		rotate_object_local(Vector3(1, 0, 0), SPEED * delta)
-	elif Input.is_action_pressed("Camara_abajo") && rotx >= ROTMAX_ABAJO:
-		rotx += rad2deg(-SPEED * delta)
-		rotate_object_local(Vector3(1, 0, 0), -SPEED * delta)
+	# Controlar cámara sólo si está activa
+	if current:
+		# Mover la vista de la cámara con las flechas
+		if Input.is_action_pressed("Camara_derecha"):
+			rotx += rad2deg(-SPEED * delta)
+			Yaw.rotate_object_local(Vector3(0, 1, 0), -SPEED * delta)
+		elif Input.is_action_pressed("Camara_izquierda"):
+			rotx += rad2deg(SPEED * delta)
+			Yaw.rotate_object_local(Vector3(0, 1, 0), SPEED * delta)
 		
-	# Trasladar la cámara con WASD
-	if Input.is_action_pressed("fpv_izquierda"):
-		Yaw.translate_object_local(Vector3(0, 0, -0.5))
-	elif Input.is_action_pressed("fpv_derecha"):
-		Yaw.translate_object_local(Vector3(0, 0, 0.5))
-	elif Input.is_action_pressed("fpv_detras"):
-		Yaw.translate_object_local(Vector3(-0.5, 0, 0))
-	elif Input.is_action_pressed("fpv_delante"):
-		Yaw.translate_object_local(Vector3(0.5, 0, 0))
+		if Input.is_action_pressed("Camara_arriba") && rotx <= ROTMAX_ARRIBA:
+			rotx += rad2deg(SPEED * delta)
+			rotate_object_local(Vector3(1, 0, 0), SPEED * delta)
+		elif Input.is_action_pressed("Camara_abajo") && rotx >= ROTMAX_ABAJO:
+			rotx += rad2deg(-SPEED * delta)
+			rotate_object_local(Vector3(1, 0, 0), -SPEED * delta)
+			
+		# Trasladar la cámara con WASD
+		if Input.is_action_pressed("fpv_izquierda"):
+			Yaw.translate_object_local(Vector3(0, 0, -0.5))
+		elif Input.is_action_pressed("fpv_derecha"):
+			Yaw.translate_object_local(Vector3(0, 0, 0.5))
+		elif Input.is_action_pressed("fpv_detras"):
+			Yaw.translate_object_local(Vector3(-0.5, 0, 0))
+		elif Input.is_action_pressed("fpv_delante"):
+			Yaw.translate_object_local(Vector3(0.5, 0, 0))
 		
 func _input(event):
-	# Mover la cámara con el ratón
-	if event is InputEventMouseMotion:		
+	# Mover la cámara con el ratón (sólo si es la activa)
+	if event is InputEventMouseMotion && current:		
 		if (event.relative.y <= 0 && rotx <= ROTMAX_ARRIBA) || (event.relative.y > 0 && rotx >= ROTMAX_ABAJO):
 			rotx += rad2deg(event.relative.y / -SENSIBILIDAD)
 			rotate_object_local(Vector3(1, 0, 0), event.relative.y / -SENSIBILIDAD)		

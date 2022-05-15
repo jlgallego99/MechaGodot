@@ -10,8 +10,9 @@ func _ready():
 	pass
 
 func _process(delta):
-	# Orbitar la cámara
-	orbital(delta)
+	# Orbitar la cámara (sólo si es la activa)
+	if 	$CameraX/Camara_Aux.current:
+		orbital(delta)
 	
 	# Iniciar animación si se pulsa la tecla ESPACIO
 	#if Input.is_action_pressed("Iniciar_Animacion"):
