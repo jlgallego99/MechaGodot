@@ -9,13 +9,13 @@
 [ext_resource path="res://lampara.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Luz_Tililar.tres" type="Animation" id=8]
 [ext_resource path="res://lampara_emergencia.tscn" type="PackedScene" id=9]
-
-[sub_resource type="CubeMesh" id=1]
+[ext_resource path="res://FPV.gd" type="Script" id=10]
 
 [node name="Spatial" type="Spatial"]
 
 [node name="CameraY" type="Spatial" parent="."]
 transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 7.9, -18.2, 7.6 )
+visible = false
 script = ExtResource( 2 )
 
 [node name="CameraX" type="Spatial" parent="CameraY"]
@@ -70,13 +70,13 @@ anims/Luz_Tililar = ExtResource( 8 )
 [node name="Foco" parent="." instance=ExtResource( 7 )]
 transform = Transform( -0.141421, 0, -0.141421, 0, 0.15, 0, 0.141421, 0, -0.141421, 8.12, -11.9, 7.81 )
 
-[node name="Avatar" type="MeshInstance" parent="."]
+[node name="Yaw" type="Spatial" parent="."]
 transform = Transform( 0.2, 0, 0, 0, 0.5625, 0, 0, 0, 0.2, -49.7, -6.9, 0 )
-mesh = SubResource( 1 )
-material/0 = null
 
-[node name="Vista_Avatar" type="Camera" parent="Avatar"]
+[node name="Vista_Avatar" type="Camera" parent="Yaw"]
 transform = Transform( -2.18557e-07, 0, -5, 0, 1.77778, 0, 5, 0, -2.18557e-07, 0, 0.533334, 0 )
+current = true
+script = ExtResource( 10 )
 
 [node name="lampara_emergencia2" parent="." instance=ExtResource( 9 )]
 transform = Transform( 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0, 1, -46.8, -3.2, 0 )
