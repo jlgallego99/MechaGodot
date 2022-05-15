@@ -9,6 +9,9 @@ onready var Yaw = get_parent()
 # Sensibilidad del ratón (para que se mueva la cámara más rápido o lento)
 export var SENSIBILIDAD = 300
 
+# Rotación en el eje x que lleva la cámara, para limitar el Pitch
+var rotx = 0
+
 func _ready():
 	# Al iniciar el entorno, ocultar el ratón únicamente dentro del viewport
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -18,19 +21,20 @@ func _process(delta):
 	if Input.is_action_pressed("ui_cancel"):
 		get_tree().quit()
 	
-	var rot_pos = SPEED * delta
-	var rot_neg = -SPEED * delta	
-	
 	# Mover la vista de la cámara con las flechas
 	if Input.is_action_pressed("Camara_derecha"):
-		Yaw.rotate_object_local(Vector3(0, 1, 0), rot_neg)
+		rotx += rad2deg(-SPEED * delta)
+		Yaw.rotate_object_local(Vector3(0, 1, 0), -SPEED * delta)
 	elif Input.is_action_pressed("Camara_izquierda"):
-		Yaw.rotate_object_local(Vector3(0, 1, 0), rot_pos)
+		rotx += rad2deg(SPEED * delta)
+		Yaw.rotate_object_local(Vector3(0, 1, 0), SPEED * delta)
 	
-	if Input.is_action_pressed("Camara_arriba") && (get_rotation_degrees()[0] + rot_pos) <= ROTMAX_ARRIBA:
-		rotate_object_local(Vector3(1, 0, 0), rot_pos)
-	elif Input.is_action_pressed("Camara_abajo") && (get_rotation_degrees()[0] + rot_neg) >= ROTMAX_ABAJO:
-		rotate_object_local(Vector3(1, 0, 0), rot_neg)
+	if Input.is_action_pressed("Camara_arriba") && rotx <= ROTMAX_ARRIBA:
+		rotx += rad2deg(SPEED * delta)
+		rotate_object_local(Vector3(1, 0, 0), SPEED * delta)
+	elif Input.is_action_pressed("Camara_abajo") && rotx >= ROTMAX_ABAJO:
+		rotx += rad2deg(-SPEED * delta)
+		rotate_object_local(Vector3(1, 0, 0), -SPEED * delta)
 		
 	# Trasladar la cámara con WASD
 	if Input.is_action_pressed("fpv_izquierda"):
@@ -42,18 +46,12 @@ func _process(delta):
 	elif Input.is_action_pressed("fpv_delante"):
 		Yaw.translate_object_local(Vector3(0.5, 0, 0))
 		
-		
 func _input(event):
 	# Mover la cámara con el ratón
 	# La sensibilidad actúa como el delta en las teclas
-	if event is InputEventMouseMotion:
-		var rotx = event.relative.y / -SENSIBILIDAD
-		var roty = event.relative.x / -SENSIBILIDAD
-		var siguiente_rotx = get_rotation_degrees()[0] + rotx
-		
-		if siguiente_rotx >= ROTMAX_ABAJO && siguiente_rotx <= ROTMAX_ARRIBA:
-			rotate_object_local(Vector3(1, 0, 0), rotx)
-		#if get_rotation_degrees()[0] >= ROTMAX_ARRIBA && get_rotation_degrees()[0] <= ROTMAX_ABAJO:
-		
+	if event is InputEventMouseMotion:		
+		if (event.relative.y <= 0 && rotx <= ROTMAX_ARRIBA) || (event.relative.y > 0 && rotx >= ROTMAX_ABAJO):
+			rotx += rad2deg(event.relative.y / -SENSIBILIDAD)
+			rotate_object_local(Vector3(1, 0, 0), event.relative.y / -SENSIBILIDAD)		
 			
-		Yaw.rotate_object_local(Vector3(0, 1, 0), roty)
+		Yaw.rotate_object_local(Vector3(0, 1, 0), event.relative.x / -SENSIBILIDAD)
