@@ -8,6 +8,12 @@ var rotx_total = 0
 
 onready var Yaw = get_parent()
 
+# Valor por defecto para dividir la coordenada del ratón
+const MOUSE_DEFAULT = 200
+
+# Sensibilidad del ratón (para que se mueva la cámara más rápido o lento)
+const SENSIBILIDAD = 0.1
+
 func _ready():
 	# Al iniciar el entorno, ocultar el ratón únicamente dentro del viewport
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -35,4 +41,5 @@ func _process(delta):
 func _input(event):
 	# Mover la cámara con el ratón
 	if event is InputEventMouseMotion:
-		print(event.relative.x)
+		Yaw.rotate_object_local(Vector3(0, 1, 0), deg2rad(event.relative.x) * -SENSIBILIDAD)
+		rotate_object_local(Vector3(1, 0, 0), deg2rad(event.relative.y) * -SENSIBILIDAD)
