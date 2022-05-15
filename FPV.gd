@@ -8,11 +8,8 @@ var rotx_total = 0
 
 onready var Yaw = get_parent()
 
-# Valor por defecto para dividir la coordenada del ratón
-const MOUSE_DEFAULT = 200
-
 # Sensibilidad del ratón (para que se mueva la cámara más rápido o lento)
-const SENSIBILIDAD = 0.1
+const SENSIBILIDAD = 300
 
 func _ready():
 	# Al iniciar el entorno, ocultar el ratón únicamente dentro del viewport
@@ -23,7 +20,7 @@ func _process(delta):
 	if Input.is_action_pressed("ui_cancel"):
 		get_tree().quit()
 	
-	# Mover la cámara con las flechas
+	# Mover la vista de la cámara con las flechas
 	if Input.is_action_pressed("Camara_derecha"):
 		roty_total += 2
 		Yaw.rotate_object_local(Vector3(0, 1, 0), -SPEED * delta)
@@ -38,8 +35,20 @@ func _process(delta):
 		rotx_total += 2
 		rotate_object_local(Vector3(1, 0, 0), -SPEED * delta)
 		
+	# Trasladar la cámara con WASD
+	if Input.is_action_pressed("fpv_izquierda"):
+		Yaw.translate_object_local(Vector3(0, 0, -0.5))
+	elif Input.is_action_pressed("fpv_derecha"):
+		Yaw.translate_object_local(Vector3(0, 0, 0.5))
+	elif Input.is_action_pressed("fpv_detras"):
+		Yaw.translate_object_local(Vector3(-0.5, 0, 0))
+	elif Input.is_action_pressed("fpv_delante"):
+		Yaw.translate_object_local(Vector3(0.5, 0, 0))
+		
+		
 func _input(event):
 	# Mover la cámara con el ratón
 	if event is InputEventMouseMotion:
-		Yaw.rotate_object_local(Vector3(0, 1, 0), deg2rad(event.relative.x) * -SENSIBILIDAD)
-		rotate_object_local(Vector3(1, 0, 0), deg2rad(event.relative.y) * -SENSIBILIDAD)
+		# La sensibilidad actúa como el delta en las teclas
+		Yaw.rotate_object_local(Vector3(0, 1, 0), event.relative.x / -SENSIBILIDAD)
+		rotate_object_local(Vector3(1, 0, 0), event.relative.y / -SENSIBILIDAD)

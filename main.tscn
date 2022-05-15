@@ -1,6 +1,5 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://Silla.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Camera.gd" type="Script" id=2]
 [ext_resource path="res://estacion_espacial_uv_aplicado.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Skybox.tscn" type="PackedScene" id=4]
@@ -23,18 +22,6 @@ script = ExtResource( 2 )
 [node name="Camera" type="Camera" parent="CameraY/CameraX"]
 transform = Transform( -1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, -0.282842, 0, -7.91472 )
 far = 200.0
-
-[node name="Silla" parent="." instance=ExtResource( 1 )]
-transform = Transform( -0.057, 0, -8.60676e-09, 0, 0.326, 0, 8.60676e-09, 0, -0.057, 5.217, -6.7, -3.282 )
-
-[node name="Silla2" parent="." instance=ExtResource( 1 )]
-transform = Transform( 0.057, 0, 0, 0, 0.326, 0, 0, 0, 0.057, 2.023, -6.7, -3.282 )
-
-[node name="Silla3" parent="." instance=ExtResource( 1 )]
-transform = Transform( -2.49155e-09, 0, 0.057, 0, 0.326, 0, -0.057, 0, -2.49155e-09, 3.545, -6.7, -1.979 )
-
-[node name="Silla4" parent="." instance=ExtResource( 1 )]
-transform = Transform( -2.49155e-09, 0, -0.057, 0, 0.326, 0, 0.057, 0, -2.49155e-09, 3.545, -6.7, -4.4 )
 
 [node name="estacion_espacial_uv_aplicado" parent="." instance=ExtResource( 3 )]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 6, 0 )
