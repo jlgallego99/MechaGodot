@@ -31,3 +31,8 @@ func orbital(delta):
 	elif Input.is_action_pressed("Camara_abajo") && rotx_total <= ROTMAX_ABAJO:
 		rotx_total += 2
 		$CameraX.rotate_object_local(Vector3(1, 0, 0), SPEED * delta)
+
+
+func _on_Control_Camara_camara1():
+	# Poner esta cámara como la activa
+	$CameraX/Camara_Aux.set_current(true)

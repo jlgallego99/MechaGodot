@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
+[ext_resource path="res://Control_Camara.gd" type="Script" id=1]
 [ext_resource path="res://Camera.gd" type="Script" id=2]
 [ext_resource path="res://estacion_espacial_uv_aplicado.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Skybox.tscn" type="PackedScene" id=4]
@@ -19,7 +20,7 @@ script = ExtResource( 2 )
 
 [node name="CameraX" type="Spatial" parent="CameraY"]
 
-[node name="Camera" type="Camera" parent="CameraY/CameraX"]
+[node name="Camara_Aux" type="Camera" parent="CameraY/CameraX"]
 transform = Transform( -1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, -0.282842, 0, -7.91472 )
 far = 200.0
 
@@ -93,10 +94,19 @@ transform = Transform( 1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, -0.013, -0.
 [node name="Label" type="Label" parent="."]
 margin_right = 169.0
 margin_bottom = 56.0
-text = "Controles WASD:
+text = "Controles movimiento WASD:
 W - Moverse hacia delante
 A - Moverse hacia la izquierda
 S - Moverse hacia atrás
 D - Moverse hacia la derecha
+C - Cambiar cámara
 
 Cámara: Ratón o flechas"
+
+[node name="Control_Camara" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 1 )
+
+[connection signal="camara1" from="Control_Camara" to="CameraY" method="_on_Control_Camara_camara1"]
+[connection signal="camara2" from="Control_Camara" to="Yaw/Vista_Avatar" method="_on_Control_Camara_camara2"]

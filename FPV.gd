@@ -1,4 +1,4 @@
-extends Spatial
+extends Camera
 
 const SPEED = 2
 const ROTMAX_ARRIBA = 90
@@ -48,10 +48,14 @@ func _process(delta):
 		
 func _input(event):
 	# Mover la cámara con el ratón
-	# La sensibilidad actúa como el delta en las teclas
 	if event is InputEventMouseMotion:		
 		if (event.relative.y <= 0 && rotx <= ROTMAX_ARRIBA) || (event.relative.y > 0 && rotx >= ROTMAX_ABAJO):
 			rotx += rad2deg(event.relative.y / -SENSIBILIDAD)
 			rotate_object_local(Vector3(1, 0, 0), event.relative.y / -SENSIBILIDAD)		
 			
 		Yaw.rotate_object_local(Vector3(0, 1, 0), event.relative.x / -SENSIBILIDAD)
+
+
+func _on_Control_Camara_camara2():
+	# Poner esta cámara como la activa
+	set_current(true)
