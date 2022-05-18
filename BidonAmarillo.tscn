@@ -1,0 +1,26 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://modelos/yellow/yellow.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://modelos/yellow/textures/yellow_1k_ao.png" type="Texture" id=2]
+[ext_resource path="res://modelos/yellow/textures/yellow_1k_base_color.png" type="Texture" id=3]
+[ext_resource path="res://modelos/yellow/textures/yellow_1k_roughness.png" type="Texture" id=4]
+[ext_resource path="res://modelos/yellow/textures/yellow_1k_normal.png" type="Texture" id=5]
+[ext_resource path="res://modelos/yellow/textures/yellow_1k_Metallic.png" type="Texture" id=6]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_texture = ExtResource( 3 )
+metallic_texture = ExtResource( 6 )
+roughness_texture = ExtResource( 4 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 5 )
+ao_enabled = true
+ao_light_affect = 0.0
+ao_texture = ExtResource( 2 )
+ao_on_uv2 = false
+ao_texture_channel = 0
+
+[node name="BidonAmarillo" type="MeshInstance"]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
+mesh = ExtResource( 1 )
+material/0 = SubResource( 1 )

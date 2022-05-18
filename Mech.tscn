@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://modelos/mecha.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://MechMaterial.tres" type="Material" id=2]
+
+[node name="MeshInstance" type="MeshInstance"]
+mesh = ExtResource( 1 )
+material/0 = ExtResource( 2 )
+material/1 = ExtResource( 2 )
+material/2 = ExtResource( 2 )
+material/3 = ExtResource( 2 )

@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://modelos/black/black.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://modelos/black/textures/basecolor_black_with_marks.png" type="Texture" id=2]
+[ext_resource path="res://modelos/black/textures/None_Roughness.png.005.png" type="Texture" id=3]
+[ext_resource path="res://modelos/black/textures/None_Normal_OpenGL.png.005.png" type="Texture" id=4]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_texture = ExtResource( 2 )
+roughness_texture = ExtResource( 3 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 4 )
+ao_enabled = true
+ao_light_affect = 0.0
+ao_on_uv2 = false
+ao_texture_channel = 0
+
+[node name="BidonNegro" type="MeshInstance"]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
+mesh = ExtResource( 1 )
+material/0 = SubResource( 1 )

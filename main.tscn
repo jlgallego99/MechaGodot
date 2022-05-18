@@ -1,52 +1,59 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=19 format=2]
 
-[ext_resource path="res://Silla.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Control_Camara.gd" type="Script" id=1]
 [ext_resource path="res://Camera.gd" type="Script" id=2]
 [ext_resource path="res://estacion_espacial_uv_aplicado.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Skybox.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Foco_Potente.gd" type="Script" id=5]
 [ext_resource path="res://Bombilla_Emergencia.tscn" type="PackedScene" id=6]
+[ext_resource path="res://lampara.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Luz_Tililar.tres" type="Animation" id=8]
+[ext_resource path="res://lampara_emergencia.tscn" type="PackedScene" id=9]
+[ext_resource path="res://FPV.gd" type="Script" id=10]
+[ext_resource path="res://fuentes/SF Atarian System Extended.ttf" type="DynamicFontData" id=11]
+[ext_resource path="res://Mech.tscn" type="PackedScene" id=12]
+[ext_resource path="res://BidonOxido.tscn" type="PackedScene" id=13]
+[ext_resource path="res://BidonNegro.tscn" type="PackedScene" id=14]
+[ext_resource path="res://BidonAmarillo.tscn" type="PackedScene" id=15]
 
-[sub_resource type="Animation" id=1]
-resource_name = "Tililar"
-length = 4.0
+[sub_resource type="Animation" id=3]
+resource_name = "ZoomAnimation"
+length = 0.5
 tracks/0/type = "bezier"
-tracks/0/path = NodePath(".:light_energy")
+tracks/0/path = NodePath(".:fov")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"points": PoolRealArray( 10, -0.25, 0, 0.25, 0, 2.5, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 2.5, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 2.5, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 2.5, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 2.5, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 4, -0.25, 0, 0.921418, -2.65226, -0.0139725, -0.478582, 1.02403, 0.785549, -0.73556, 5, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 2, 2.1, 2.2, 2.3, 2.4, 3.5, 4 )
+"points": PoolRealArray( 120, -0.25, 0, 0.25, 0, 70, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5 )
 }
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 11 )
+
+[sub_resource type="Theme" id=2]
+default_font = SubResource( 1 )
 
 [node name="Spatial" type="Spatial"]
 
 [node name="CameraY" type="Spatial" parent="."]
 transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 7.9, -18.2, 7.6 )
+visible = false
 script = ExtResource( 2 )
 
 [node name="CameraX" type="Spatial" parent="CameraY"]
 
-[node name="Camera" type="Camera" parent="CameraY/CameraX"]
+[node name="Camara_Aux" type="Camera" parent="CameraY/CameraX"]
 transform = Transform( -1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, -0.282842, 0, -7.91472 )
-far = 200.0
+fov = 120.0
 
-[node name="Silla" parent="." instance=ExtResource( 1 )]
-transform = Transform( -0.057, 0, -8.60676e-09, 0, 0.326, 0, 8.60676e-09, 0, -0.057, 5.217, -6.7, -3.282 )
-
-[node name="Silla2" parent="." instance=ExtResource( 1 )]
-transform = Transform( 0.057, 0, 0, 0, 0.326, 0, 0, 0, 0.057, 2.023, -6.7, -3.282 )
-
-[node name="Silla3" parent="." instance=ExtResource( 1 )]
-transform = Transform( -2.49155e-09, 0, 0.057, 0, 0.326, 0, -0.057, 0, -2.49155e-09, 3.545, -6.7, -1.979 )
-
-[node name="Silla4" parent="." instance=ExtResource( 1 )]
-transform = Transform( -2.49155e-09, 0, -0.057, 0, 0.326, 0, 0.057, 0, -2.49155e-09, 3.545, -6.7, -4.4 )
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CameraY/CameraX/Camara_Aux"]
+anims/ZoomAnimation = SubResource( 3 )
 
 [node name="estacion_espacial_uv_aplicado" parent="." instance=ExtResource( 3 )]
-transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 6, 0 )
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 6.3, 0 )
 
 [node name="Skybox" parent="." instance=ExtResource( 4 )]
 
@@ -59,20 +66,117 @@ spot_angle = 51.7153
 script = ExtResource( 5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Foco_Potente"]
-anims/Tililar = SubResource( 1 )
+anims/Tililar = ExtResource( 8 )
 
 [node name="Luz_Nebulosa" type="DirectionalLight" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 123.4 )
 light_energy = 2.0
 shadow_enabled = true
 
-[node name="Bombilla_Emergencia" parent="." instance=ExtResource( 6 )]
+[node name="Brillo_Foco" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.02, -13.1, 7.71 )
+light_energy = 10.0
+shadow_enabled = true
+omni_range = 1.465
+omni_attenuation = 0.0358968
 
-[node name="Bombilla_Emergencia2" parent="." instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -48, -2.4, 0 )
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Brillo_Foco"]
+anims/Luz_Tililar = ExtResource( 8 )
 
-[node name="Bombilla_Emergencia3" parent="." instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.4, 48 )
+[node name="Foco" parent="." instance=ExtResource( 7 )]
+transform = Transform( -0.141421, 0, -0.141421, 0, 0.15, 0, 0.141421, 0, -0.141421, 8.12, -11.9, 7.81 )
 
-[node name="Bombilla_Emergencia4" parent="." instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.4, -48 )
+[node name="Yaw" type="Spatial" parent="."]
+transform = Transform( -8.74228e-09, 0, 0.2, 0, 0.5625, 0, -0.2, 0, -8.74228e-09, -49.7, -6.8, 24.7 )
+
+[node name="Vista_Avatar" type="Camera" parent="Yaw"]
+transform = Transform( -2.18557e-07, 0, -5, 0, 1.77778, 0, 5, 0, -2.18557e-07, 0, 1.6, 0 )
+current = true
+script = ExtResource( 10 )
+
+[node name="lampara_emergencia2" parent="." instance=ExtResource( 9 )]
+transform = Transform( 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0, 1, -46.8, -3.2, 0 )
+
+[node name="Bombilla_Emergencia2" parent="lampara_emergencia2" instance=ExtResource( 6 )]
+transform = Transform( 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0, 1, -0.0133991, -0.223209, 0 )
+
+[node name="lampara_emergencia" parent="." instance=ExtResource( 9 )]
+transform = Transform( 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0, 1, 46.7, -3.2, 0 )
+
+[node name="Bombilla_Emergencia" parent="lampara_emergencia" instance=ExtResource( 6 )]
+transform = Transform( 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0, 1, 0.013, -0.223, 0 )
+
+[node name="lampara_emergencia3" parent="." instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, -3.2, 46.9 )
+
+[node name="Bombilla_Emergencia3" parent="lampara_emergencia3" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, -0.013, -0.223, 0 )
+
+[node name="lampara_emergencia4" parent="." instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, -3.2, -46.65 )
+
+[node name="Bombilla_Emergencia4" parent="lampara_emergencia4" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, -0.013, -0.223, 0 )
+
+[node name="lampara_emergencia5" parent="." instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -3.4, 6.55 )
+
+[node name="Bombilla_Emergencia4" parent="lampara_emergencia5" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, -0.013, -0.223, 0 )
+
+[node name="lampara_emergencia6" parent="." instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -3.4, -6.35 )
+
+[node name="Bombilla_Emergencia4" parent="lampara_emergencia6" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, -0.013, -0.223, 0 )
+
+[node name="Label" type="Label" parent="."]
+margin_right = 236.0
+margin_bottom = 178.0
+theme = SubResource( 2 )
+text = "Controles movimiento WASD:
+W - Moverse hacia delante
+A - Moverse hacia la izquierda
+S - Moverse hacia atras
+D - Moverse hacia la derecha
+C - Cambiar camara
+
+Camara: Raton o flechas"
+
+[node name="Control_Camara" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 1 )
+
+[node name="Mech" parent="." instance=ExtResource( 12 )]
+transform = Transform( -0.222739, 0, -0.222739, 0, 0.45, 0, 0.222739, 0, -0.222739, 7.7, -23.5, 7.3 )
+
+[node name="Mech2" parent="." instance=ExtResource( 12 )]
+transform = Transform( 2.78178e-08, 0.212132, 0.212132, -0.3, 1.31134e-08, 2.62268e-08, 9.27259e-09, -0.212132, 0.212132, -54.9, -5.9, -3.6 )
+
+[node name="Mech3" parent="." instance=ExtResource( 12 )]
+transform = Transform( -0.208281, -0.192836, 0.0971229, 0.174769, -0.229813, -0.0814958, 0.126785, -1.10839e-08, 0.271892, -43.7, -3.9, -13.8 )
+
+[node name="Mech4" parent="." instance=ExtResource( 12 )]
+transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -4, -7.1, 47.5 )
+
+[node name="BidonOxido" parent="." instance=ExtResource( 13 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 5.6, -6.3, -1.5 )
+
+[node name="BidonOxido2" parent="." instance=ExtResource( 13 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -2.2, -6.2, 2.9 )
+
+[node name="BidonNegro" parent="." instance=ExtResource( 14 )]
+transform = Transform( 0.409576, -0.286788, 1.25359e-08, 0, -2.18557e-08, -0.5, 0.286788, 0.409576, -1.79031e-08, -2.9, -6.4, 1.7 )
+
+[node name="BidonAmarillo" parent="." instance=ExtResource( 15 )]
+transform = Transform( -0.383022, 0.160697, 0.278335, 0, 0.433013, -0.25, -0.321394, -0.191511, -0.331707, 4.5, -6.2, -4.6 )
+
+[node name="BidonAmarillo2" parent="." instance=ExtResource( 15 )]
+transform = Transform( -1.54543e-08, -0.353553, 0.353553, 0.5, -2.18557e-08, 0, 1.54543e-08, 0.353553, 0.353553, 2.2, -6.4, 4.4 )
+
+[node name="BidonNegro2" parent="." instance=ExtResource( 14 )]
+transform = Transform( 0.5, 0, 0, 0, 0.433013, -0.25, 0, 0.25, 0.433013, 2.5, -6.2, 3 )
+
+[connection signal="camara1" from="Control_Camara" to="CameraY" method="_on_Control_Camara_camara1"]
+[connection signal="camara2" from="Control_Camara" to="Yaw/Vista_Avatar" method="_on_Control_Camara_camara2"]
