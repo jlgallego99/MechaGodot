@@ -40,13 +40,13 @@ func _process(delta):
 			
 		# Trasladar la cámara con WASD
 		if Input.is_action_pressed("fpv_izquierda"):
-			Yaw.translate_object_local(Vector3(0, 0, -0.5))
+			Yaw.translate_object_local(Vector3(0, 0, -0.8))
 		elif Input.is_action_pressed("fpv_derecha"):
-			Yaw.translate_object_local(Vector3(0, 0, 0.5))
+			Yaw.translate_object_local(Vector3(0, 0, 0.8))
 		elif Input.is_action_pressed("fpv_detras"):
-			Yaw.translate_object_local(Vector3(-0.5, 0, 0))
+			Yaw.translate_object_local(Vector3(-0.8, 0, 0))
 		elif Input.is_action_pressed("fpv_delante"):
-			Yaw.translate_object_local(Vector3(0.5, 0, 0))
+			Yaw.translate_object_local(Vector3(0.8, 0, 0))
 		
 func _input(event):
 	# Mover la cámara con el ratón (sólo si es la activa)

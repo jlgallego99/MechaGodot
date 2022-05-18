@@ -35,5 +35,6 @@ func orbital(delta):
 
 
 func _on_Control_Camara_camara1():
-	# Poner esta cámara como la activa
+	# Poner esta cámara como la activa y ejecutar animación
+	$CameraX/Camara_Aux/AnimationPlayer.play("ZoomAnimation")
 	$CameraX/Camara_Aux.set_current(true)

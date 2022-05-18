@@ -14,9 +14,18 @@ config/name="MechaGodot"
 run/main_scene="res://main.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/dpi/allow_hidpi=true
+window/stretch/aspect="keep"
+
 [global]
 
 camera=false
+
+[gui]
+
+theme/use_hidpi=true
 
 [input]
 

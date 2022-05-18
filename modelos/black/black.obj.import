@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/black.obj-8d08a09065dc5de8ad74c7c7f67d3edb.mesh"
+
+[deps]
+
+files=[ "res://.import/black.obj-8d08a09065dc5de8ad74c7c7f67d3edb.mesh" ]
+
+source_file="res://modelos/black/black.obj"
+dest_files=[ "res://.import/black.obj-8d08a09065dc5de8ad74c7c7f67d3edb.mesh", "res://.import/black.obj-8d08a09065dc5de8ad74c7c7f67d3edb.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286
