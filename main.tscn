@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Control_Camara.gd" type="Script" id=1]
 [ext_resource path="res://Camera.gd" type="Script" id=2]
@@ -30,8 +30,9 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5 )
 }
 
-[sub_resource type="BoxShape" id=4]
-extents = Vector3( 0.6, 1, 0.8 )
+[sub_resource type="CapsuleShape" id=13]
+radius = 0.7
+height = 0.002
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 11 )
@@ -61,6 +62,9 @@ data = PoolVector3Array( 0, 1.34, 1.0126, -0.1936, 1.34, 0.9936, 0, 1.3286, 1.00
 
 [sub_resource type="BoxShape" id=12]
 extents = Vector3( 1, 1.3, 1 )
+
+[sub_resource type="BoxShape" id=14]
+extents = Vector3( 6.7, 6.4, 3.3 )
 
 [node name="Spatial" type="Spatial"]
 
@@ -112,20 +116,17 @@ anims/Luz_Tililar = ExtResource( 8 )
 [node name="Foco" parent="." instance=ExtResource( 7 )]
 transform = Transform( -0.141421, 0, -0.141421, 0, 0.15, 0, 0.141421, 0, -0.141421, 8.12, -11.9, 7.81 )
 
-[node name="RigidBody" type="RigidBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -49.7, -6.8, 24.7 )
-
-[node name="CollisionShape" type="CollisionShape" parent="RigidBody"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0 )
-shape = SubResource( 4 )
-
-[node name="Yaw" type="Spatial" parent="RigidBody"]
-transform = Transform( -8.74228e-09, 0, 0.2, 0, 0.5625, 0, -0.2, 0, -8.74228e-09, 0, 0, 0 )
-
-[node name="Vista_Avatar" type="Camera" parent="RigidBody/Yaw"]
-transform = Transform( -2.18557e-07, 0, -5, 0, 1.77778, 0, 5, 0, -2.18557e-07, 0, 1.6, 0 )
-current = true
+[node name="KinematicBody" type="KinematicBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -49.7, -6.4, 24.7 )
 script = ExtResource( 10 )
+
+[node name="CollisionShape" type="CollisionShape" parent="KinematicBody"]
+transform = Transform( 1, 0, 0, 0, 2.07187, 0, 0, 0, 1, 0, 0.700001, 0 )
+shape = SubResource( 13 )
+
+[node name="Vista_Avatar" type="Camera" parent="KinematicBody"]
+transform = Transform( 1, 0, -3.55271e-15, 0, 1, 0, 3.55271e-15, 0, 1, 0, 1.3, 0 )
+current = true
 
 [node name="lampara_emergencia2" parent="." instance=ExtResource( 9 )]
 transform = Transform( 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0, 1, -46.8, -3.2, 0 )
@@ -180,9 +181,6 @@ Camara: Raton o flechas"
 margin_right = 40.0
 margin_bottom = 40.0
 script = ExtResource( 1 )
-
-[node name="Mech" parent="." instance=ExtResource( 12 )]
-transform = Transform( -0.222739, 0, -0.222739, 0, 0.45, 0, 0.222739, 0, -0.222739, 7.7, -23.5, 7.3 )
 
 [node name="StaticBody2" type="StaticBody" parent="."]
 
@@ -274,5 +272,15 @@ skeleton = NodePath("../..")
 transform = Transform( 1.59099, 0, 0.707107, 0, 1.31625, 0, -1.59099, 0, 0.707107, -53.3444, -5.4, -5.15563 )
 shape = SubResource( 12 )
 
+[node name="StaticBody10" type="StaticBody" parent="."]
+
+[node name="Mech" parent="StaticBody10" instance=ExtResource( 12 )]
+transform = Transform( -0.222739, 0, -0.222739, 0, 0.45, 0, 0.222739, 0, -0.222739, 7.7, -23.5, 7.3 )
+skeleton = NodePath("../..")
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody10"]
+transform = Transform( -0.222739, 0, -0.222739, 0, 0.45, 0, 0.222739, 0, -0.222739, 7.7, -19.8, 7.3 )
+shape = SubResource( 14 )
+
 [connection signal="camara1" from="Control_Camara" to="CameraY" method="_on_Control_Camara_camara1"]
-[connection signal="camara2" from="Control_Camara" to="RigidBody/Yaw/Vista_Avatar" method="_on_Control_Camara_camara2"]
+[connection signal="camara2" from="Control_Camara" to="KinematicBody/Vista_Avatar" method="_on_Control_Camara_camara2"]
