@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Control_Camara.gd" type="Script" id=1]
 [ext_resource path="res://Camera.gd" type="Script" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://BidonOxido.tscn" type="PackedScene" id=13]
 [ext_resource path="res://BidonNegro.tscn" type="PackedScene" id=14]
 [ext_resource path="res://BidonAmarillo.tscn" type="PackedScene" id=15]
+[ext_resource path="res://texturas/crosshair.png" type="Texture" id=16]
 
 [sub_resource type="Animation" id=3]
 resource_name = "ZoomAnimation"
@@ -281,6 +282,13 @@ skeleton = NodePath("../..")
 [node name="CollisionShape" type="CollisionShape" parent="StaticBody10"]
 transform = Transform( -0.222739, 0, -0.222739, 0, 0.45, 0, 0.222739, 0, -0.222739, 7.7, -19.8, 7.3 )
 shape = SubResource( 14 )
+
+[node name="Mirilla_centro" type="TextureRect" parent="."]
+margin_left = 512.0
+margin_top = 300.0
+margin_right = 544.0
+margin_bottom = 332.0
+texture = ExtResource( 16 )
 
 [connection signal="camara1" from="Control_Camara" to="CameraY" method="_on_Control_Camara_camara1"]
 [connection signal="camara2" from="Control_Camara" to="KinematicBody/Vista_Avatar" method="_on_Control_Camara_camara2"]
