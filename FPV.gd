@@ -4,7 +4,7 @@ const SPEED = 2
 const ROTMAX_ARRIBA = 90
 const ROTMAX_ABAJO = -90
 
-onready var Yaw = get_parent()
+onready var Rigid = get_parent().get_parent()
 
 # Sensibilidad del ratón (para que se mueva la cámara más rápido o lento)
 export var SENSIBILIDAD = 300
@@ -26,10 +26,10 @@ func _process(delta):
 		# Mover la vista de la cámara con las flechas
 		if Input.is_action_pressed("Camara_derecha"):
 			rotx += rad2deg(-SPEED * delta)
-			Yaw.rotate_object_local(Vector3(0, 1, 0), -SPEED * delta)
+			Rigid.rotate_object_local(Vector3(0, 1, 0), -SPEED * delta)
 		elif Input.is_action_pressed("Camara_izquierda"):
 			rotx += rad2deg(SPEED * delta)
-			Yaw.rotate_object_local(Vector3(0, 1, 0), SPEED * delta)
+			Rigid.rotate_object_local(Vector3(0, 1, 0), SPEED * delta)
 		
 		if Input.is_action_pressed("Camara_arriba") && rotx <= ROTMAX_ARRIBA:
 			rotx += rad2deg(SPEED * delta)
@@ -40,13 +40,13 @@ func _process(delta):
 			
 		# Trasladar la cámara con WASD
 		if Input.is_action_pressed("fpv_izquierda"):
-			Yaw.translate_object_local(Vector3(0, 0, -0.8))
+			Rigid.translate_object_local(Vector3(0, 0, -0.8))
 		elif Input.is_action_pressed("fpv_derecha"):
-			Yaw.translate_object_local(Vector3(0, 0, 0.8))
+			Rigid.translate_object_local(Vector3(0, 0, 0.8))
 		elif Input.is_action_pressed("fpv_detras"):
-			Yaw.translate_object_local(Vector3(-0.8, 0, 0))
+			Rigid.translate_object_local(Vector3(-0.8, 0, 0))
 		elif Input.is_action_pressed("fpv_delante"):
-			Yaw.translate_object_local(Vector3(0.8, 0, 0))
+			Rigid.translate_object_local(Vector3(0.8, 0, 0))
 		
 func _input(event):
 	# Mover la cámara con el ratón (sólo si es la activa)
@@ -55,7 +55,7 @@ func _input(event):
 			rotx += rad2deg(event.relative.y / -SENSIBILIDAD)
 			rotate_object_local(Vector3(1, 0, 0), event.relative.y / -SENSIBILIDAD)		
 			
-		Yaw.rotate_object_local(Vector3(0, 1, 0), event.relative.x / -SENSIBILIDAD)
+		Rigid.rotate_object_local(Vector3(0, 1, 0), event.relative.x / -SENSIBILIDAD)
 
 
 func _on_Control_Camara_camara2():
