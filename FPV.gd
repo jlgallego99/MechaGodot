@@ -27,13 +27,21 @@ func _physics_process(delta):
 	# Cerrar el entorno al pulsar la tecla ESCAPE
 	if Input.is_action_pressed("ui_cancel"):
 		get_tree().quit()
+	
+	# Mostrar/ocultar ratón
+	if Input.is_action_just_pressed("mostrar_ui"):
+		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		else:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		
 		
 	direccion = Vector3()
 	var cam_xform = camera.get_global_transform()
 	var input_vec = Vector2(0, 0)
 	
 	# Controlar cámara sólo si está activa
-	if camera.current:
+	if camera.current && Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		# Mover la vista de la cámara con las flechas
 		if Input.is_action_pressed("Camara_derecha"):
 			rotate_object_local(Vector3(0, 1, 0), -SPEED * delta)
@@ -89,7 +97,7 @@ func _physics_process(delta):
 		
 func _input(event):
 	# Mover la cámara con el ratón (sólo si es la activa)
-	if event is InputEventMouseMotion && camera.current:		
+	if event is InputEventMouseMotion && camera.current && Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:		
 		if (event.relative.y <= 0 && rotx <= ROTMAX_ARRIBA) || (event.relative.y > 0 && rotx >= ROTMAX_ABAJO):
 			rotx += rad2deg(event.relative.y / -SENSIBILIDAD)
 			camera.rotate_object_local(Vector3(1, 0, 0), event.relative.y / -SENSIBILIDAD)		
@@ -97,6 +105,9 @@ func _input(event):
 		rotate_object_local(Vector3(0, 1, 0), event.relative.x / -SENSIBILIDAD)
 
 
+
+
+
 func _on_Control_Camara_camara2():
-	# Poner esta cámara como la activa
 	camera.set_current(true)
+	
