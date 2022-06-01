@@ -5,7 +5,13 @@ extends Node
 # var a = 2
 # var b = "text"
 
+var Player
 var Ascensor
+var AdornosPlanta1
+var AdornosPlantaBaja
+var Pasillos
+var ObjetosPrincipal
+var ObjetosAbajo
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

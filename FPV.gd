@@ -20,6 +20,7 @@ var direccion = Vector3(0, 0, 0)
 var rotx = 0
 
 func _ready():
+	Global.Player = self
 	# Al iniciar el entorno, ocultar el ratón únicamente dentro del viewport
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
