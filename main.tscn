@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Control_Camara.gd" type="Script" id=1]
 [ext_resource path="res://Camera.gd" type="Script" id=2]
@@ -16,9 +16,7 @@
 [ext_resource path="res://BidonNegro.tscn" type="PackedScene" id=14]
 [ext_resource path="res://BidonAmarillo.tscn" type="PackedScene" id=15]
 [ext_resource path="res://texturas/crosshair.png" type="Texture" id=16]
-[ext_resource path="res://Area.gd" type="Script" id=17]
-[ext_resource path="res://Material_Oxidado.tres" type="Material" id=18]
-[ext_resource path="res://Material_Lampara.tres" type="Material" id=19]
+[ext_resource path="res://BotonAscensor.tscn" type="PackedScene" id=17]
 
 [sub_resource type="Animation" id=3]
 resource_name = "ZoomAnimation"
@@ -70,81 +68,6 @@ extents = Vector3( 1, 1.3, 1 )
 [sub_resource type="BoxShape" id=14]
 extents = Vector3( 6.7, 6.4, 3.3 )
 
-[sub_resource type="BoxShape" id=16]
-extents = Vector3( 1, 0.1, 0.4 )
-
-[sub_resource type="CubeMesh" id=17]
-
-[sub_resource type="Animation" id=19]
-resource_name = "PulsarBoton"
-tracks/0/type = "bezier"
-tracks/0/path = NodePath("MeshInstance:translation:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"points": PoolRealArray( -0.334169, -0.25, 0, 0.25, 0, -0.167084, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.5 )
-}
-tracks/1/type = "bezier"
-tracks/1/path = NodePath("MeshInstance:translation:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"points": PoolRealArray( -9.53674e-07, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.5 )
-}
-tracks/2/type = "bezier"
-tracks/2/path = NodePath("MeshInstance:translation:z")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"points": PoolRealArray( 1.15803e-06, -0.25, 0, 0.25, 0, 1.15803e-06, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.5 )
-}
-
-[sub_resource type="Animation" id=20]
-length = 0.001
-tracks/0/type = "bezier"
-tracks/0/path = NodePath("MeshInstance:translation:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"points": PoolRealArray(  ),
-"times": PoolRealArray(  )
-}
-tracks/1/type = "bezier"
-tracks/1/path = NodePath("MeshInstance:translation:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"points": PoolRealArray(  ),
-"times": PoolRealArray(  )
-}
-tracks/2/type = "bezier"
-tracks/2/path = NodePath("MeshInstance:translation:z")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"points": PoolRealArray(  ),
-"times": PoolRealArray(  )
-}
-
-[sub_resource type="BoxShape" id=18]
-
-[sub_resource type="CubeMesh" id=15]
-
 [node name="Spatial" type="Spatial"]
 
 [node name="CameraY" type="Spatial" parent="."]
@@ -184,7 +107,7 @@ shadow_enabled = true
 
 [node name="Brillo_Foco" type="OmniLight" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.02, -13.1, 7.71 )
-light_energy = 10.0
+light_energy = 5.0
 shadow_enabled = true
 omni_range = 1.465
 omni_attenuation = 0.0358968
@@ -372,35 +295,10 @@ skeleton = NodePath("../..")
 transform = Transform( -0.222739, 0, -0.222739, 0, 0.45, 0, 0.222739, 0, -0.222739, 7.7, -19.8, 7.3 )
 shape = SubResource( 14 )
 
-[node name="StaticBody11" type="StaticBody" parent="."]
+[node name="BotonAscensorBajar" parent="." instance=ExtResource( 17 )]
 
-[node name="Area" type="Area" parent="StaticBody11"]
-transform = Transform( 0.5985, 0, 0, 0, 2.5, 0, 0, 0, 0.875, 1.2, -22.7497, 0 )
-script = ExtResource( 17 )
-
-[node name="CollisionPolygon" type="CollisionShape" parent="StaticBody11/Area"]
-transform = Transform( 0.138889, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.334169, 0, 0 )
-shape = SubResource( 16 )
-
-[node name="MeshInstance" type="MeshInstance" parent="StaticBody11/Area"]
-transform = Transform( 0.15, 0, 0, 0, 0.015, 0, 0, 0, 0.075, -0.334169, -9.53674e-07, 1.15803e-06 )
-mesh = SubResource( 17 )
-material/0 = ExtResource( 19 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="StaticBody11/Area"]
-anims/PulsarBoton = SubResource( 19 )
-anims/RESET = SubResource( 20 )
-
-[node name="CollisionShape" type="CollisionShape" parent="StaticBody11"]
-transform = Transform( 0.11875, 0, 0, 0, 0.5, 0, 0, 0, 0.175, 1.2, -23.0497, 0 )
-shape = SubResource( 18 )
-
-[node name="CuadroMandos" type="MeshInstance" parent="StaticBody11"]
-transform = Transform( 0.11875, 0, 0, 0, 0.5, 0, 0, 0, 0.175, 1.2, -23.0497, 0 )
-mesh = SubResource( 15 )
-skeleton = NodePath("../..")
-material/0 = ExtResource( 18 )
+[node name="BotonAscensorSubir" parent="." instance=ExtResource( 17 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.8, -195.492, 0.1 )
 
 [connection signal="camara1" from="Control_Camara" to="CameraY" method="_on_Control_Camara_camara1"]
 [connection signal="camara2" from="Control_Camara" to="KinematicBody" method="_on_Control_Camara_camara2"]
-[connection signal="input_event" from="StaticBody11/Area" to="StaticBody11/Area" method="_on_Area_input_event"]
