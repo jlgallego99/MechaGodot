@@ -176,7 +176,7 @@ shape = SubResource( 12 )
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.9, -195.492, 0.1 )
 
 [node name="ControlCarga" type="Area" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -26.8, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -79.8, 0 )
 script = ExtResource( 14 )
 
 [node name="CollisionShape" type="CollisionShape" parent="ControlCarga"]

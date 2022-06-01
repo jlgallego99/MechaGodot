@@ -5,6 +5,8 @@ extends Node
 # var a = 2
 # var b = "text"
 
+var Raiz
+var RaizEstacion
 var Player
 var Ascensor
 var AdornosPlanta1
@@ -21,3 +23,11 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+# Elimina todos los hijos de un nodo para descargarlo
+func delete_children(node):
+	for n in node.get_children():
+		node.remove_child(n)
+		n.queue_free()
+		
+	node.call_deferred("free")
