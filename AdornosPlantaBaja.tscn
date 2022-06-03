@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Foco_Potente.gd" type="Script" id=1]
+[ext_resource path="res://lampara.tscn" type="PackedScene" id=2]
+[ext_resource path="res://MechMaterial.tres" type="Material" id=3]
+[ext_resource path="res://Luz_Tililar.tres" type="Animation" id=4]
+[ext_resource path="res://modelos/mecha.obj" type="ArrayMesh" id=5]
+[ext_resource path="res://Mech.tscn" type="PackedScene" id=6]
+
+[sub_resource type="BoxShape" id=14]
+extents = Vector3( 6.7, 6.4, 3.3 )
+
+[node name="AdornosPlantaBaja" type="Position3D"]
+
+[node name="Foco_Potente" type="SpotLight" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 8.12, -12.8, 7.81 )
+light_energy = 10.0
+shadow_enabled = true
+spot_range = 17.8
+spot_angle = 51.7153
+script = ExtResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Foco_Potente"]
+anims/Tililar = ExtResource( 4 )
+
+[node name="Brillo_Foco" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.02, -13.1, 7.71 )
+light_energy = 5.0
+shadow_enabled = true
+omni_range = 1.465
+omni_attenuation = 0.0358968
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Brillo_Foco"]
+anims/Luz_Tililar = ExtResource( 4 )
+
+[node name="Foco" type="Spatial" parent="." instance=ExtResource( 2 )]
+transform = Transform( -0.141421, 0, -0.141421, 0, 0.15, 0, 0.141421, 0, -0.141421, 8.12, -11.9, 7.81 )
+
+[node name="StaticBody10" type="StaticBody" parent="."]
+
+[node name="Mech" type="MeshInstance" parent="StaticBody10" instance=ExtResource( 6 )]
+transform = Transform( -0.222739, 0, -0.222739, 0, 0.45, 0, 0.222739, 0, -0.222739, 7.7, -23.5, 7.3 )
+mesh = ExtResource( 5 )
+skeleton = NodePath("../../..")
+material/0 = ExtResource( 3 )
+material/1 = ExtResource( 3 )
+material/2 = ExtResource( 3 )
+material/3 = ExtResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody10"]
+transform = Transform( -0.222739, 0, -0.222739, 0, 0.45, 0, 0.222739, 0, -0.222739, 7.7, -19.8, 7.3 )
+shape = SubResource( 14 )

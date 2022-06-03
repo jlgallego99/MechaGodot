@@ -7,7 +7,7 @@ var roty_total = 0
 var rotx_total = 0
 
 func _ready():
-	pass
+	Global.Raiz = get_parent()
 
 func _process(delta):
 	# Orbitar la cámara (sólo si es la activa)
