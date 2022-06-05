@@ -1,10 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Foco_Potente.gd" type="Script" id=1]
 [ext_resource path="res://lampara.tscn" type="PackedScene" id=2]
-[ext_resource path="res://MechMaterial.tres" type="Material" id=3]
 [ext_resource path="res://Luz_Tililar.tres" type="Animation" id=4]
-[ext_resource path="res://modelos/mecha.obj" type="ArrayMesh" id=5]
 [ext_resource path="res://Mech.tscn" type="PackedScene" id=6]
 
 [sub_resource type="BoxShape" id=14]
@@ -33,19 +31,14 @@ omni_attenuation = 0.0358968
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Brillo_Foco"]
 anims/Luz_Tililar = ExtResource( 4 )
 
-[node name="Foco" type="Spatial" parent="." instance=ExtResource( 2 )]
+[node name="Foco" parent="." instance=ExtResource( 2 )]
 transform = Transform( -0.141421, 0, -0.141421, 0, 0.15, 0, 0.141421, 0, -0.141421, 8.12, -11.9, 7.81 )
 
 [node name="StaticBody10" type="StaticBody" parent="."]
 
-[node name="Mech" type="MeshInstance" parent="StaticBody10" instance=ExtResource( 6 )]
+[node name="Mech" parent="StaticBody10" instance=ExtResource( 6 )]
 transform = Transform( -0.222739, 0, -0.222739, 0, 0.45, 0, 0.222739, 0, -0.222739, 7.7, -23.5, 7.3 )
-mesh = ExtResource( 5 )
 skeleton = NodePath("../../..")
-material/0 = ExtResource( 3 )
-material/1 = ExtResource( 3 )
-material/2 = ExtResource( 3 )
-material/3 = ExtResource( 3 )
 
 [node name="CollisionShape" type="CollisionShape" parent="StaticBody10"]
 transform = Transform( -0.222739, 0, -0.222739, 0, 0.45, 0, 0.222739, 0, -0.222739, 7.7, -19.8, 7.3 )
